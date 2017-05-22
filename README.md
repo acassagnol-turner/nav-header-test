@@ -11,14 +11,6 @@ The default navigation header for CNN.com
 TODO: make component installable through bower
 ```
 
-**NOTE:**
-
-To see the demo:
-- clone this repository
-- then `bower install --save webcomponents/webcomponentsjs`
-- run server `python -m SimpleHTTPServer 8000` (server needed for link import to work)
-- point Chrome to http://0.0.0.0:8000/demo.html (need to work on compatibility issues with other browsers)
-
 ## Import
 
 ```html
@@ -40,6 +32,7 @@ watch-live-config description
 
 
 **opened : Boolean**
+
 opened description
 
 
@@ -48,3 +41,13 @@ opened description
 **toggle()**
 
 Toggles the navigation menu open and close.
+
+
+
+## Demo
+
+To see the demo:
+- clone this repository
+- then `bower install --save webcomponents/webcomponentsjs`
+- run server `python -m SimpleHTTPServer 8000` (server needed for link import to work)
+- point Chrome to http://0.0.0.0:8000/demo.html (need to work on compatibility issues with other browsers)
