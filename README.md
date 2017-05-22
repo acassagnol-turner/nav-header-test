@@ -15,9 +15,9 @@ TODO: make component installable through bower
 
 To see the demo:
 - clone this repository
-`bower install --save webcomponents/webcomponentsjs`
+- then `bower install --save webcomponents/webcomponentsjs`
 - run server `python -m SimpleHTTPServer 8000` (server needed for link import to work)
-- point Chrome to http://0.0.0.0:8000/demo.html (need to work on compatibility issues wither other browsers)
+- point Chrome to http://0.0.0.0:8000/demo.html (need to work on compatibility issues with other browsers)
 
 ## Import
 
