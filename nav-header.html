@@ -2,7 +2,7 @@
 <template id="nav-header-template">
     <style>
         /*this component needs to inherit some CNN styles like fonts and colors*/
-            :host {
+            :host  {
                 font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
                 --gray-4: #d9d9d9;
                 --gray-5: #bfbfbf;
@@ -206,6 +206,9 @@
 <script>
     (function (window) {
 
+        const doc = (document._currentScript || document.currentScript).ownerDocument,
+              template = doc.querySelector('#nav-header-template');
+
         customElements.define('nav-header', class NavHeader extends HTMLElement {
             constructor() {
                 super();
@@ -215,10 +218,8 @@
             connectedCallback() {
 
                 // Create shadow DOM and insert template and styles
-                const doc = (document._currentScript || document.currentScript).ownerDocument,
-                      template = doc.querySelector('#nav-header-template'),
-                      shadowRoot = this.attachShadow({mode: 'open'}),
-                      templateClone = document.importNode(template.content, true);
+                var shadowRoot = this.attachShadow({mode: 'open'}),
+                    templateClone = document.importNode(template.content, true);
                 this.shadowRoot.appendChild(templateClone);
 
                 // Get elements from the shadow root
@@ -259,7 +260,7 @@
 
             }
 
-            // A getter/setter for a nav-data property.
+            // A getter/setter for the nav-data property.
             get navData() {
               let s = this.getAttribute('nav-data');
               return s ? JSON.parse(s) : [];
@@ -269,40 +270,40 @@
               this.setAttribute('nav-data', JSON.stringify(val));
             }
 
-            // A getter/setter for a nav-data property.
+            // A getter/setter for the watch-live-config property
             get watchLiveConfig() {
-              let s = this.getAttribute('nav-data');
+              let s = this.getAttribute('watch-live-config');
               return s ? JSON.parse(s) : [];
             }
 
             set watchLiveConfig(val) {
-              this.setAttribute('nav-data', JSON.stringify(val));
+              this.setAttribute('watch-live-config', JSON.stringify(val));
             }
 
             // if the shadow DOM has been created, populate menu
             _updateMenu(navData) {
                 if(this.shadowRoot){
-                      var navData = typeof navData === 'object' ? navData : JSON.parse(navData),
-                          navList = '';
-                      for (var i = 0; i < navData.length; i++) {
-                          navList += navData[i].image ?
-                          `<li><a href="${navData[i].url}"><img src="https:${navData[i].image}" class="nav-menu__img-${navData[i].imageId}" style="width: ${navData[i].imageWidth};"></a></li>` :
-                          `<li><a href="${navData[i].url}">${navData[i].label}</a></li>`;
-                      }
-                      this.$menu.innerHTML = '<ul>' + navList + '</ul>';
+                    navData = typeof navData === 'object' ? navData : JSON.parse(navData);
+                    var navList = '';
+                    for (var i = 0; i < navData.length; i++) {
+                        navList += navData[i].image ?
+                        `<li><a href="${navData[i].url}"><img src="https:${navData[i].image}" class="nav-menu__img-${navData[i].imageId}" style="width: ${navData[i].imageWidth};"></a></li>` :
+                        `<li><a href="${navData[i].url}">${navData[i].label}</a></li>`;
+                    }
+                    this.$menu.innerHTML = '<ul>' + navList + '</ul>';
                 }
             }
 
             // if the shadow DOM has been created, configure watch live button
             _updateWatchLive(config) {
                 if(this.shadowRoot){
-                    var btnConfig = typeof config === 'object' ? config : JSON.parse(config),
-                        re = new RegExp('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)'),
+                    config = typeof config === 'object' ? config : JSON.parse(config);
+                    var re = new RegExp('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)'),
                         matches = document.cookie.match(re),
                         userCountry = matches ? matches.pop() : null;
-                    if ((!userCountry && this._CNN.edition === 'domestic') || btnConfig.validCountries.indexOf(userCountry) !== -1) {
-                        this.$watchLiveBtn.innerHTML = btnConfig.copy + ' <i class="nav__live-tv-icon"></i>';
-                        this.$watchLiveBtn.setAttribute('href', btnConfig.link);
+                    if ((!userCountry && this._CNN.edition === 'domestic') || config.validCountries.indexOf(userCountry) !== -1) {
+                        this.$watchLiveBtn.innerHTML = config.copy + ' <i class="nav__live-tv-icon"></i>';
+                        this.$watchLiveBtn.setAttribute('href', config.link);
                         this.$watchLiveBtn.classList.add('show');
                     }
                 }
