@@ -8,8 +8,15 @@ The default navigation header for CNN.com
 ## Install
 
 ```bash
-TODO: make installable through bower
+TODO: make component installable through bower
 ```
+
+**NOTE:**
+To see the demo:
+- clone this repository
+bower install --save webcomponents/webcomponentsjs
+- run server `python -m SimpleHTTPServer 8000` (needed for link import to work)
+- point Chrome to http://0.0.0.0:8000/demo.html (need to work on compatibility issues wither other browsers)
 
 ## Import
 

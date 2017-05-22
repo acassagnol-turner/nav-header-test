@@ -1,7 +1,0 @@
-{
-  "name": "nav-header",
-  "version": "1.0.0",
-  "devDependencies": {
-    "web-component": "^1.0.10"
-  }
-}
