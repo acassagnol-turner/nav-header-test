@@ -1,0 +1,274 @@
+<template id="nav-header-template">
+    <style>
+        /*this component needs to inherit some CNN styles like fonts and colors*/
+            :host {
+                font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+                --gray-4: #d9d9d9;
+                --gray-5: #bfbfbf;
+                --gray-6: #a6a6a6;
+                --gray-12: #1a1a1a;
+                --cnn-red: #c00;
+            }
+            a {
+                text-decoration: none;
+            }
+        /*above styles should be inherited */
+        #nav-fixed {
+            position: fixed;
+            z-index: 99;
+            top: 0px;
+            width: 100%;
+            left: 0px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+
+        :host([opened]) #nav-fixed {
+            height: 100%;
+        }
+
+        .nav {
+            background-color: var(--gray-12);
+            position: relative;
+            height: 50px;
+        }
+
+        .nav-logo {
+            background-image: url('http://ssl.cdn.turner.com/cnn/2016/images/01/28/logo_cnn_badge_2up.png');
+            background-position: 2px 0px;
+            background-repeat: no-repeat;
+            background-size: 50px;
+            background-color: var(--cnn-red);
+            height: 50px;
+            width: 55px;
+            display: block;
+        }
+
+        .nav-button {
+            cursor: pointer;
+            display: inline-block;
+            height: 50px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: color .2s;
+            width: 50px;
+        }
+        .nav-button__hamburger {
+            left: 50%;
+            margin: -1.5px 0 0 -10px;
+            position: absolute;
+            top: 50%;
+            transition: background .3s, color .2s;
+        }
+
+        .nav-button__hamburger,
+        .nav-button__hamburger:before,
+        .nav-button__hamburger:after {
+            background: var(--gray-6);
+            height: 2px;
+            width: 20px;
+        }
+
+        .nav-button__hamburger:before,
+        .nav-button__hamburger:after {
+            content: '';
+            transform-origin: center center;
+            transition: transform .3s, background .3s;
+        }
+
+        .nav-button__hamburger:before {
+            left: 0;
+            position: absolute;
+            top: -6px;
+        }
+
+        .nav-button__hamburger:after {
+            bottom: -6px;
+            left: 0;
+            position: absolute;
+        }
+
+        .nav-button:hover .nav-button__hamburger, .nav-button:hover .nav-button__hamburger:before, .nav-button:hover .nav-button__hamburger:after {
+            background: #fff;
+        }
+
+        :host([opened]) .nav-button__hamburger {
+            background: transparent;
+        }
+
+        :host([opened]) .nav-button__hamburger:before, :host([opened]) .nav-button__hamburger:after{
+            background: var(--cnn-red);
+        }
+
+        :host([opened]) .nav-button__hamburger:before{
+            transform: translate(0, 6px) rotate(-45deg);
+        }
+
+        :host([opened]) .nav-button__hamburger:after{
+            transform: translate(0, -6px) rotate(45deg);
+        }
+
+        :host([opened]) .nav-button:hover .nav-button__hamburger {
+            background: transparent;
+        }
+
+        :host([opened]) .nav-button:hover .nav-button__hamburger:before, :host([opened]) .nav-button:hover .nav-button__hamburger:after{
+            background: var(--cnn-red);
+        }
+
+        .nav__live-tv {
+            border: 1px solid var(--gray-5);
+            color: var(--gray-5);
+            display: none;
+            font-size: .9em;
+            font-weight: 300;
+            letter-spacing: .05em;
+            line-height: 23px;
+            padding: 0 10px;
+            position: absolute;
+            right: 50px;
+            top: 13px;
+            transition: color .2s, border-color .2s;
+        }
+
+        .nav__live-tv:hover {
+            border-color: #fff;
+        }
+
+        .nav .nav__live-tv:hover {
+            color: #fff;
+        }
+
+        .nav__live-tv.show {
+            display: inline;
+        }
+
+        .nav__live-tv-icon {
+            background: var(--cnn-red);
+            border-radius: 10px;
+            display: inline-block;
+            height: 7px;
+            margin: 0 0 2px 5px;
+            vertical-align: middle;
+            width: 7px;
+        }
+
+        .nav-menu {
+            background-color: #262626;
+            color: #fff;
+            font-size: 18px;
+            line-height: 21px;
+            padding: 15px 10px 1px 10px;
+            display: none;
+          }
+
+        :host([opened]) .nav-menu {
+            display: block;
+            overflow: auto;
+            height: calc(100% - 50px);
+          }
+
+      .nav-menu a{
+        color: #fff;
+        }
+
+      .nav-menu a:hover{
+        color: var(--gray-4);
+        }
+
+      .nav-menu ul{
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        }
+
+    .nav-menu ul li{
+      margin: 0px;
+      padding: 0 0 14px 0;
+      }
+    </style>
+    <div id="nav-fixed">
+        <nav class="nav">
+            <div id="nav-button" class="nav-button">
+              <div class="nav-button__hamburger"></div>
+            </div>
+             <a href="/" id="logo" class="nav-logo"></a>
+             <a href="" data-header="live" class="nav__live-tv show" id="nav-mobileTV"></a>
+        </nav>
+
+        <nav class="nav-menu state-initial" id="nav-main">
+        </nav>
+    </div>
+</template>
+
+<script>
+    (function (window) {
+
+      const doc = (document._currentScript || document.currentScript).ownerDocument;
+      const template = doc.querySelector('#nav-header-template');
+
+        customElements.define('nav-header', class NavHeader extends HTMLElement {
+            constructor() {
+                super();
+            }
+
+            // Fires when an instance of the element is created.
+            connectedCallback() {
+                const temp = document.importNode(template.content, true);
+                let shadowRoot = this.attachShadow({mode: 'open'});
+                this.shadowRoot.appendChild(temp);
+
+                //Get elements from the shadow root
+                this.$menu = this.shadowRoot.querySelector('#nav-main');
+                this.$menuBtn = this.shadowRoot.querySelector('#nav-button');
+                this.$watchLiveBtn = this.shadowRoot.querySelector('#nav-mobileTV');
+
+                this._CNN = window.CNN || {'edition':'domestic'};
+
+                this._initMenu(JSON.parse(this.getAttribute('nav-data')));
+                this._initWatchLive(JSON.parse(this.getAttribute('watch-live-config')));
+
+            }
+
+            // Monitor attributes for changes.
+            static get observedAttributes() {return ['opened']; }
+
+            _initMenu(navData) {
+                var navList = '';
+                for (var i = 0; i < navData.length; i++) {
+                    navList += navData[i].image ?
+                    `<li><a href="${navData[i].url}"><img src="https:${navData[i].image}" class="nav-menu__img-${navData[i].imageId}" style="width: ${navData[i].imageWidth};"></a></li>` :
+                    `<li><a href="${navData[i].url}">${navData[i].label}</a></li>`;
+                }
+                this.$menu.innerHTML = '<ul>' + navList + '</ul>';
+
+                this.$menuBtn.addEventListener('click', function () {
+                    this.toggle();
+                }.bind(this));
+            }
+
+            _initWatchLive(config) {
+                var re = new RegExp('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)'),
+                    matches = document.cookie.match(re),
+                    userCountry = matches ? matches.pop() : null;
+                if ((!userCountry && this._CNN.edition === 'domestic') || config.validCountries.indexOf(userCountry) !== -1) {
+                    this.$watchLiveBtn.innerHTML = config.copy + ' <i class="nav__live-tv-icon"></i>';
+                    this.$watchLiveBtn.setAttribute('href', config.link);
+                    this.$watchLiveBtn.classList.add('show');
+                }
+            }
+
+            toggle() {
+                var opened = this.hasAttribute('opened') ? true : false;
+
+                if (opened) {
+                    this.removeAttribute('opened');
+                }else{
+                    this.setAttribute('opened', '');
+                }
+            }
+        });
+
+    })(window);
+</script>
