@@ -22,15 +22,21 @@ TODO: make installable through bower
 ### Properties
 
 **nav-data : Object**
+
 nav-data description
 
+
 **watch-live-config : Object**
+
 watch-live-config description
+
 
 **opened : Boolean**
 opened description
 
+
 ### Methods
 
-toggle()
+**toggle()**
+
 Toggles the navigation menu open and close.
