@@ -21,9 +21,9 @@ Include an import link in the parent document:
 
 ### Properties
 
-**nav-data : Object**
+**nav-data : Array**
 
-A JSON object containing the list of links for the navigation. This is pulled in from [Pal's nav.subs object](http://cnn-pal.prod.56m.dmtio.net/section/domestic/v1/index.html/?context=content%2Fby-uri&workspace=false)
+An array containing the list of links for the navigation. This is pulled in from [Pal's nav.subs object](http://cnn-pal.prod.56m.dmtio.net/section/domestic/v1/index.html/?context=content%2Fby-uri&workspace=false)
 
 
 **watch-live-config : Object**
