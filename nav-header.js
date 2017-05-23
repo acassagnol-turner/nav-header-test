@@ -25,8 +25,8 @@
             this._CNN = window.CNN || {'edition':'domestic'};
 
             // Initialize menu and watch live button
-            this._updateMenu(JSON.parse(this.getAttribute('nav-data')));
-            this._updateWatchLive(JSON.parse(this.getAttribute('watch-live-config')));
+            this._updateMenu(this.getAttribute('nav-data'));
+            this._updateWatchLive(this.getAttribute('watch-live-config'));
 
             this.$menuBtn.addEventListener('click', function () {
                 this.toggle();
@@ -76,9 +76,9 @@
 
         // if the shadow DOM has been created, populate menu
         _updateMenu(navData) {
-            if(this.shadowRoot){
-                navData = typeof navData === 'object' ? navData : JSON.parse(navData);
+            if(this.shadowRoot && navData){
                 var navList = '';
+                navData = typeof navData === 'string' ? JSON.parse(navData) : navData;
                 for (var i = 0; i < navData.length; i++) {
                     navList += navData[i].image ?
                     `<li><a href="${navData[i].url}"><img src="https:${navData[i].image}" class="nav-menu__img-${navData[i].imageId}" style="width: ${navData[i].imageWidth};"></a></li>` :
@@ -90,7 +90,7 @@
 
         // if the shadow DOM has been created, configure watch live button
         _updateWatchLive(config) {
-            if(this.shadowRoot){
+            if(this.shadowRoot && config){
                 config = typeof config === 'object' ? config : JSON.parse(config);
                 var re = new RegExp('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)'),
                     matches = document.cookie.match(re),

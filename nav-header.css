@@ -168,20 +168,20 @@
   }
 
 .nav-menu a{
-color: #fff;
+    color: #fff;
 }
 
 .nav-menu a:hover{
-color: var(--gray-4);
+    color: var(--gray-4);
 }
 
 .nav-menu ul{
-margin: 0;
-padding: 0;
-list-style: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .nav-menu ul li{
-margin: 0;
-padding: 0 0 14px 0;
+    margin: 0;
+    padding: 0 0 14px 0;
 }
