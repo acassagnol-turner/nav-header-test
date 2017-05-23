@@ -2,7 +2,7 @@
 The default navigation header for CNN.com
 
 ```html
-<nav-header opened nav-data="{{CNN.pageModel.nav.subs}}" watch-live-config="{{appConfig.watchLiveButton.link}}"></nav-header>
+<nav-header opened nav-data="{{CNN.pageModel.nav.subs}}" watch-live-config="{{appConfig.watchLiveButton}}"></nav-header>
 ```
 
 ## Install
@@ -50,4 +50,4 @@ To see the demo:
 - clone this repository
 - then `bower install webcomponents/webcomponentsjs`
 - run server `python -m SimpleHTTPServer 8000` (server needed for link import to work)
-- point Chrome to http://0.0.0.0:8000/demo.html (need to work on compatibility issues with other browsers)
+- point Chrome to http://0.0.0.0:8000/demo.html (need to work on compatibility issues with other browsers [issue](https://github.com/acassagnol/nav-header-test/issues/1))
