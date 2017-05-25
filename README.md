@@ -1,5 +1,5 @@
 # Nav Header
-The default navigation header for CNN.com
+The default navigation header for CNN.com (moving repo to TurnerCode)
 
 ```html
 <nav-header opened nav-data="{{CNN.pageModel.nav.subs}}" watch-live-config="{{appConfig.watchLiveButton}}"></nav-header>
@@ -8,7 +8,7 @@ The default navigation header for CNN.com
 ## Install
 
 ```bash
-TODO: make component installable through bower
+bower install https://github.com/acassagnol/nav-header-test.git
 ```
 
 Include an import link in the parent document:
