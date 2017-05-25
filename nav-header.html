@@ -4,16 +4,15 @@
 <!-- Style & Structure for nav-header -->
 <template id="nav-header-template">
 
-    <!-- Component Style (should be compiled from a src/nav-header.scss file) -->
-    <link rel="stylesheet" href="/bower_components/nav-header/nav-header.css">
-
+    <!-- Component Style (is compiled from src/nav-header.scss file) -->
+    <link rel="stylesheet" href="../nav-header.css">
     <div id="nav-fixed">
         <nav class="nav">
             <div id="nav-button" class="nav-button">
               <div class="nav-button__hamburger"></div>
             </div>
              <a href="/" id="logo" class="nav-logo"></a>
-             <a href="" data-header="live" class="nav__live-tv show" id="nav-mobileTV"></a>
+             <a href="" data-header="live" class="nav__live-tv" id="nav-mobileTV"></a>
         </nav>
 
         <nav class="nav-menu state-initial" id="nav-main">
@@ -21,5 +20,5 @@
     </div>
 </template>
 
-<!-- Component Class (should be transpiled from a src/nav-header.js ES6 class) -->
-<script type="text/javascript" src="/bower_components/nav-header/nav-header.js"></script>
+<!-- Component Class (is transpiled from src/nav-header.js ES6 class) -->
+<script type="text/javascript" src="../nav-header.js"></script>

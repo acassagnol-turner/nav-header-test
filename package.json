@@ -1,0 +1,29 @@
+{
+  "name": "nav-header",
+  "version": "1.0.0",
+  "description": "web component for default navigation",
+  "main": "index.js",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-custom-element-classes": "^0.1.0",
+    "babel-plugin-transform-es2015-classes": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "node-sass": "^4.5.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:sass": "node-sass --include-path scss src/nav-header.scss nav-header.css",
+    "build:es6": "babel src/nav-header.js --presets es2015 --plugins transform-custom-element-classes,transform-es2015-classes -o nav-header.js",
+    "build": "npm run build:es6 && npm run build:sass"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acassagnol/nav-header-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acassagnol/nav-header-test/issues"
+  },
+  "homepage": "https://github.com/acassagnol/nav-header-test#readme"
+}
