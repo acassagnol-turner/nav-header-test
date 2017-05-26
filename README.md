@@ -1,11 +1,7 @@
 # Nav Header
-The default navigation header for CNN.com (moving repo to TurnerCode)
+The default navigation header for CNN.com
 
-```html
-<nav-header opened nav-data="{{CNN.pageModel.nav.subs}}" watch-live-config="{{appConfig.watchLiveButton}}"></nav-header>
-```
-
-## Install
+## Use in Project
 
 ```bash
 bower install https://github.com/acassagnol/nav-header-test.git
@@ -15,6 +11,46 @@ Include an import link in the parent document:
 
 ```html
 <link rel="import" href="/bower_components/nav-header/nav-header.html">
+```
+
+Add nav-header tag
+
+```html
+<nav-header opened nav-data="{{CNN.pageModel.nav.subs}}" watch-live-config="{{appConfig.watchLiveButton}}"></nav-header>
+```
+
+```javascript
+// basic example of how you might dynamically import the component **should actually use injector.js**
+
+importHref('nav-header', function (){
+
+    // after web component has been loaded, add it to page
+    var nav = document.createElement('nav-header');
+    nav.setAttribute('nav-data', JSON.stringify(CNN.pageModel.nav.buckets.subs));
+    nav.setAttribute('watch-live-config', JSON.stringify(CNN.appConfig.watchLiveButton));
+
+    document.body.replaceChild(nav, document.querySelector('#nav-container'));
+
+});
+
+function importHref(name, cb) {
+
+    // should check if this has already been imported
+
+    console.log('Loading Web Component: ' + name);
+
+    var link = document.createElement('link');
+    link.setAttribute('rel', 'import');
+    link.setAttribute('href', '/bower_components/' + name + '/' + name + '.html');
+    link.onload = function() {
+        // do stuff after load
+        if (typeof cb === 'function') {
+            cb();
+        }
+    };
+    document.head.appendChild(link);
+
+}
 ```
 
 ## API Reference
@@ -47,7 +83,7 @@ Toggles the navigation menu open and close.
 ## Demo
 
 To see the demo:
-- clone this repository
+- clone this repository `git clone https://github.com/acassagnol/nav-header-test.git nav-header`
 - `cd demo`
 - then `bower install`
 - run server `python -m SimpleHTTPServer 8000` (server needed for link import to work)
