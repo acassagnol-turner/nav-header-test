@@ -5,7 +5,7 @@
   width: 100%;
   z-index: 99;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
-  :root([opened]) #nav-fixed {
+  :host([opened]) #nav-fixed {
     height: 100%; }
 
 .nav {
@@ -58,18 +58,18 @@
   .nav-button:hover .nav-button__hamburger, .nav-button:hover .nav-button__hamburger:before, .nav-button:hover .nav-button__hamburger:after {
     background: #fff; }
 
-:root([opened]) .nav-button__hamburger {
+:host([opened]) .nav-button__hamburger {
   background: transparent; }
-  :root([opened]) .nav-button__hamburger:before, :root([opened]) .nav-button__hamburger:after {
+  :host([opened]) .nav-button__hamburger:before, :host([opened]) .nav-button__hamburger:after {
     background: #c00; }
-  :root([opened]) .nav-button__hamburger:before {
+  :host([opened]) .nav-button__hamburger:before {
     transform: translate(0, 6px) rotate(-45deg); }
-  :root([opened]) .nav-button__hamburger:after {
+  :host([opened]) .nav-button__hamburger:after {
     transform: translate(0, -6px) rotate(45deg); }
 
-:root([opened]) .nav-button:hover .nav-button__hamburger {
+:host([opened]) .nav-button:hover .nav-button__hamburger {
   background: transparent; }
-  :root([opened]) .nav-button:hover .nav-button__hamburger:before, :root([opened]) .nav-button:hover .nav-button__hamburger:after {
+  :host([opened]) .nav-button:hover .nav-button__hamburger:before, :host([opened]) .nav-button:hover .nav-button__hamburger:after {
     background: #c00; }
 
 .nav__live-tv {
@@ -110,7 +110,7 @@
   font-size: 18px;
   line-height: 21px;
   padding: 15px 10px 1px; }
-  :root([opened]) .nav-menu {
+  :host([opened]) .nav-menu {
     display: block;
     height: calc(100% - 50px);
     overflow: auto; }

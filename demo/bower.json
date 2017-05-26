@@ -1,0 +1,9 @@
+{
+  "name": "demo",
+  "homepage": "https://github.com/acassagnol/nav-header-test",
+  "description": "demo page with filler data for nav-header",
+  "dependencies": {
+    "nav-header": "https://github.com/acassagnol/nav-header-test.git",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
+  }
+}

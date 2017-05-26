@@ -48,6 +48,7 @@ Toggles the navigation menu open and close.
 
 To see the demo:
 - clone this repository
-- then `bower install webcomponents/webcomponentsjs`
+- `cd demo`
+- then `bower install`
 - run server `python -m SimpleHTTPServer 8000` (server needed for link import to work)
-- point Chrome to http://0.0.0.0:8000/demo.html (need to work on compatibility issues with other browsers [issue](https://github.com/acassagnol/nav-header-test/issues/1))
+- point Chrome to http://0.0.0.0:8000/ (need to work on compatibility issues with other browsers [issue](https://github.com/acassagnol/nav-header-test/issues/1))
