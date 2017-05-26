@@ -29,7 +29,8 @@ importHref('nav-header', function (){
     nav.setAttribute('nav-data', JSON.stringify(CNN.pageModel.nav.buckets.subs));
     nav.setAttribute('watch-live-config', JSON.stringify(CNN.appConfig.watchLiveButton));
 
-    document.body.replaceChild(nav, document.querySelector('#nav-container'));
+    //replace a different vertical's navigation
+    document.body.replaceChild(nav, document.querySelector('nav-header'));
 
 });
 
